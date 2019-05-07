@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"/>
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--别名定义-->
+    <typeAliases>
+        <package name="com.variflight.entity"/>
+    </typeAliases>
+
+    <!--配置environment环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--transactionManager 元素配置数据库事务
+                type属性配置方式：
+                    jdbc:采用jdbc的方式管理事务；
+                    managed，采用容器的方式管理事务，在JNDI数据源中使用
+                    自定义，自定义数据库管理方法
+            -->
+            <transactionManager type="JDBC"/>
+            <!--dataSource 元素配置数据源连接信息， type属性是连接数据库的方式配置
+                UNPOOLED 非连接池方式连接
+                POOLED 使用连接池连接
+                JNDI 使用JNDI数据源
+                自定义数据源
+             -->
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="${jdbc_driver}"/>
+                <property name="url" value="${jdbc_url}"/>
+                <property name="username" value="${jdbc_username}"/>
+                <property name="password" value="${jdbc_password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+
+    </mappers>
+</configuration>
